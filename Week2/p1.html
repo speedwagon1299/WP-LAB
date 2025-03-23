@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bill Generator</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <h1>Bill Generator</h1>
+        <form id="billForm">
+            <label for="brand">Select Brand:</label>
+            <select id="brand" name="brand">
+                <option value="HP">HP</option>
+                <option value="Nokia">Nokia</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Motorola">Motorola</option>
+                <option value="Apple">Apple</option>
+            </select>
+            <br /><br />
+
+            <label>Items:</label><br />
+            <input type="checkbox" id="mobile" name="item" value="Mobile" />
+            <label for="mobile">Mobile</label><br />
+            <input type="checkbox" id="laptop" name="item" value="Laptop" />
+            <label for="laptop">Laptop</label><br /><br />
+
+            <label for="quantity">Enter Quantity:</label>
+            <input
+                type="number"
+                id="quantity"
+                name="quantity"
+                min="1"
+                required
+            />
+            <br /><br />
+
+            <button type="button" id="produceBill">Produce Bill</button>
+        </form>
+
+        <script>
+            $(document).ready(function () {
+                $("#produceBill").on("click", function () {
+                    const brand = $("#brand").val();
+                    const items = [];
+                    $('input[name="item"]:checked').each(function () {
+                        items.push($(this).val());
+                    });
+                    const quantity = $("#quantity").val();
+
+                    if (items.length === 0) {
+                        alert("Please select at least one item.");
+                        return;
+                    }
+
+                    if (!quantity || quantity <= 0) {
+                        alert("Please enter a valid quantity.");
+                        return;
+                    }
+
+                    const totalAmount = items.length * quantity * 100; // Assuming each item costs $100
+                    alert(
+                        `Brand: ${brand}\nItems: ${items.join(
+                            ", "
+                        )}\nQuantity: ${quantity}\nTotal Amount: $${totalAmount}`
+                    );
+                });
+            });
+        </script>
+    </body>
+</html>
