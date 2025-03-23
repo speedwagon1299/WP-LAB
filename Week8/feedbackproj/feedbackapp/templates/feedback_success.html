@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Feedback Submitted</title>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+    </head>
+    <body class="container bg-light">
+        <h2 class="mt-5">Thank You, {{ name }}!</h2>
+        <p><strong>Subject:</strong> {{ subject }}</p>
+        <p><strong>Course:</strong> {{ course }}</p>
+        <p><strong>Your Feedback:</strong> {{ feedback_text }}</p>
+        <p>
+            Your feedback has been successfully recorded. Thank you for your
+            input!
+        </p>
+    </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Vote for the Book</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+    <h2>How is the book ASP.NET with C# by Vipul Prakashan?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.review }}
+        </div>
+        <br/><br/><br/><br/>
+        <button type="submit" class="btn btn-primary">Vote</button>
+    </form>
+</body>
+</html>

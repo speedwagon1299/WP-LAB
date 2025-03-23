@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Marks Page</title>
+        <link
+            type="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+    </head>
+    <body class="container mt-5">
+        <div class="bg-light shadow rounded">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.name.label_tag }} <br />
+                    {{ form.name }}
+                </div>
+                <div class="form-group">
+                    {{ form.tot_marks.label_tag }} <br />
+                    {{ form.tot_marks }}
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary">
+                    Calculate CGPA
+                </button>
+            </form>
+        </div>
+    </body>
+</html>

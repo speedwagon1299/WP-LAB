@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Bill Details</title>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+    </head>
+    <body class="container bg-light">
+        <h2 class="mt-5">Bill Details</h2>
+        <p><strong>Brand:</strong> {{ brand }}</p>
+        <p><strong>Items:</strong> {{ items|join:", " }}</p>
+        <p><strong>Quantity:</strong> {{ quantity }}</p>
+        <p><strong>Total Amount:</strong> ₹{{ total }}</p>
+    </body>
+</html>

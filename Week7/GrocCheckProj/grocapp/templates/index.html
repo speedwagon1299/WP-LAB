@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <title>Grocery Checklist</title>
+    </head>
+    <body class="container mt-5">
+        <div class="bg-light p-4 rounded shadow">
+            <h2>Select Grocery Items</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.items.label_tag }} <br />
+                    {{ form.items }}
+                </div>
+                <button type="submit" class="btn btn-primary">Add Items</button>
+            </form>
+        </div>
+
+        {% if items_with_prices %}
+        <h3 class="mt-4">Selected Items</h3>
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item, price in items_with_prices %}
+                <tr>
+                    <td>{{ item }}</td>
+                    <td>{{ price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </body>
+</html>

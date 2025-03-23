@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Voting Results</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+    <h2>Voting Results</h2>
+    <p><strong>Total Votes:</strong> {{ total_votes }}</p>
+    <ul class="list-group">
+        <li class="list-group-item">Good: {{ percentages.good }}%</li>
+        <li class="list-group-item">Satisfactory: {{ percentages.satis }}%</li>
+        <li class="list-group-item">Bad: {{ percentages.bad }}%</li>
+    </ul>
+    <a href="{% url 'index' %}" class="btn btn-secondary mt-3">Vote Again</a>
+</body>
+</html>
