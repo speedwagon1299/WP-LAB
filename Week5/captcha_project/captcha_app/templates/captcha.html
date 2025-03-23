@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Captcha Verification</title>
+
+        <!-- jQuery CDN -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                let attempts = 0;
+                let captchaText = Math.floor(1000 + Math.random() * 9000); // Generate 4-digit CAPTCHA
+
+                $("#captcha_display").text(captchaText);
+
+                $("#submit_button").click(function () {
+                    let userInput = $("#captcha_input").val();
+                    let messageElement = $("#message");
+
+                    if (userInput == captchaText) {
+                        messageElement
+                            .text("CAPTCHA Matched!")
+                            .css("color", "green");
+                    } else {
+                        attempts++;
+                        messageElement
+                            .text("CAPTCHA Incorrect! Try again.")
+                            .css("color", "red");
+
+                        if (attempts >= 3) {
+                            messageElement
+                                .text("Too many attempts! Input Disabled.")
+                                .css("color", "gray");
+                            $("#captcha_input, #submit_button").prop(
+                                "disabled",
+                                true
+                            );
+                        }
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h2>Enter CAPTCHA: <span id="captcha_display"></span></h2>
+        <input type="text" id="captcha_input" />
+        <button id="submit_button">Submit</button>
+        <p id="message"></p>
+    </body>
+</html>
