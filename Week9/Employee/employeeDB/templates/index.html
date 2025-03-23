@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Directory</title>
+</head>
+<body>
+    <h1>Employee Directory</h1>
+    
+    <h2>Add Works Data</h2>
+    <form action="{% url 'add_works' %}" method="POST">
+        {% csrf_token %}
+        {{ works_form.as_p }}
+        <button type="submit">Add Work</button>
+    </form>
+
+    <h2>Add Lives Data</h2>
+    <form action="{% url 'add_lives' %}" method="POST">
+        {% csrf_token %}
+        {{ lives_form.as_p }}
+        <button type="submit">Add Lives</button>
+    </form>
+
+    <h2>Find Employees by Company</h2>
+    <form action="{% url 'search_results' %}" method="GET">
+        {% csrf_token %}
+        <label for="company_name">Company Name:</label>
+        <input type="text" id="company_name" name="company_name" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <h2>Works Data</h2>
+    <ul>
+        {% for work in works %}
+            <li>{{ work.person_name }} works at {{ work.company_name }} with a salary of {{ work.salary }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Lives Data</h2>
+    <ul>
+        {% for live in lives %}
+            <li>{{ live.person_name }} lives on {{ live.street }}, {{ live.city }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

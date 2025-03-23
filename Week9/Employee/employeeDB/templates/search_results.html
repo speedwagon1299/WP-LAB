@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Employees working at {{ company_name }}</h1>
+    {% if results %}
+        <ul>
+            {% for result in results %}
+                <li>{{ result.person_name }} lives in {{ result.city }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No employees found for {{ company_name }}</p>
+    {% endif %}
+    <a href="{% url 'index' %}">Back to Home</a>
+</body>
+</html>
