@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Table</title>
+        <link rel="stylesheet" href="p4style.css" />
+    </head>
+    <body>
+        <h2>Population Data</h2>
+        <div id="table-container"></div>
+        <script type="text/javascript">
+            const popData = [
+                { country: "INDIA", year: 1998, population: 85 },
+                { country: "INDIA", year: 1999, population: 90 },
+                { country: "INDIA", year: 2000, population: 100 },
+                { country: "USA", year: 1998, population: 30 },
+                { country: "USA", year: 1999, population: 35 },
+                { country: "USA", year: 2000, population: 40 },
+                { country: "UK", year: 1998, population: 25 },
+                { country: "UK", year: 1999, population: 30 },
+                { country: "UK", year: 2000, population: 35 },
+            ];
+
+            function displayTable(data) {
+                let tableHTML = "<table><thead><tr>";
+                tableHTML += '<th bgcolor="red">Country</th>';
+                tableHTML +=
+                    '<th bgcolor="red" colspan="2">Population (In Crores)</th>';
+                tableHTML += "</tr></thead><tbody>";
+                let currentCountry = "";
+                let rowCount = 0;
+                data.forEach((row, index) => {
+                    if (row.country !== currentCountry) {
+                        if (currentCountry !== "") {
+                            tableHTML += "</tr>";
+                        }
+                        currentCountry = row.country;
+                        tableHTML += `<tr><td class="alcenter" rowspan="3">${row.country}</td><td class="alright lightblue">${row.year}</td><td class="alright">${row.population}</td></tr>`;
+                    } else {
+                        tableHTML += `<tr><td class="alright lightblue">${row.year}</td><td class="alright">${row.population}</td></tr>`;
+                    }
+                });
+                tableHTML += "</tbody></table>";
+                document.getElementById("table-container").innerHTML =
+                    tableHTML;
+            }
+            displayTable(popData);
+        </script>
+    </body>
+</html>

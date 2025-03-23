@@ -1,0 +1,18 @@
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 3px;
+}
+.alright {
+    text-align: right;
+    background: lightgreen;
+}
+.alcenter {
+    text-align: center;
+    background: lightyellow;
+}
+.lightblue {
+    background: lightblue;
+}
