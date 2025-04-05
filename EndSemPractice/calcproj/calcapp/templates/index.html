@@ -1,0 +1,101 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="{% static 'jquery.min.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" />
+        <title>Calculator</title>
+    </head>
+    <body>
+        <div class="container bg-light">
+            <div class="mt-4">
+                <input type="text" id="inp" class="form-control" />
+            </div>
+            <div class="mt-4 row">
+                <div class="col-3">
+                    <button class="btn w-100" value="7">7</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn w-100" value="8">8</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn w-100" value="9">9</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn w-100" value="+">+</button>
+                </div>
+            </div>
+            <div class="mt-4 row">
+                <div class="col-3">
+                    <button class="btn w-100" value="4">4</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn w-100" value="5">5</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn w-100" value="6">6</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn w-100" value="-">-</button>
+                </div>
+            </div>
+            <div class="mt-4 row">
+                <div class="col-3">
+                    <button class="btn w-100" value="1">1</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn w-100" value="2">2</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn w-100" value="3">3</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn w-100" value="=" id="sub-btn">=</button>
+                </div>
+            </div>
+            <div class="mt-4 row">
+                <div class="col-3">
+                    <button class="btn w-100" value="*">*</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn w-100" value="0">0</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn w-100" value=".">.</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn w-100" value="c" id="clr-btn">c</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $("#clr-btn").on({
+                    click: function () {
+                        $("#inp").val("");
+                    },
+                });
+                $("#sub-btn").on({
+                    click: function () {
+                        let x = $("#inp").val();
+                        x = eval(x);
+                        $("#inp").val(x);
+                    },
+                });
+                $("button").on({
+                    click: function () {
+                        let x = $("#inp").val();
+                        let y = $(this).val();
+                        if (y !== "=" && y != "c") {
+                            x = x + y;
+                            $("#inp").val(x);
+                        }
+                    },
+                });
+            });
+        </script>
+    </body>
+</html>
