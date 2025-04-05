@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bill Generator</title>
+        <script src="{% static 'jquery.min.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" />
+    </head>
+    <body class="container bg-light">
+        <div class="card shadow-sm mt-4">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>Item</td>
+                        <td>Quantity</td>
+                        <td>Price</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Item 1</td>
+                        <td>10</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>Item 2</td>
+                        <td>20</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Item 3</td>
+                        <td>15</td>
+                        <td>25</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="form-group mt-4">
+            <label>Select the Required Items:</label>
+            <div class="mt-4 row">
+                <div class="col-2">
+                    <label for="item1" class="form-check-label"
+                        ><input
+                            type="checkbox"
+                            id="item1"
+                            value="item1"
+                            class="form-check-input"
+                        />Item 1</label
+                    >
+                </div>
+                <div class="col-2">
+                    <label class="form-label" for="quant1"
+                        >Quantity:
+                        <input
+                            id="quant1"
+                            type="text"
+                            class="form-control item1"
+                            disabled
+                    /></label>
+                </div>
+            </div>
+            <div class="mt-4 row">
+                <div class="col-2">
+                    <label for="item2" class="form-check-label"
+                        ><input
+                            type="checkbox"
+                            id="item2"
+                            value="item2"
+                            class="form-check-input"
+                        />Item 2</label
+                    >
+                </div>
+                <div class="col-2">
+                    <label class="form-label" for="quant2"
+                        >Quantity:
+                        <input
+                            id="quant2"
+                            type="text"
+                            class="form-control item2"
+                            disabled
+                    /></label>
+                </div>
+            </div>
+            <div class="mt-4 row">
+                <div class="col-2">
+                    <label for="item3" class="form-check-label"
+                        ><input
+                            type="checkbox"
+                            id="item3"
+                            value="item3"
+                            class="form-check-input"
+                        />Item 3</label
+                    >
+                </div>
+                <div class="col-2">
+                    <label class="form-label" for="quant3"
+                        >Quantity:
+                        <input
+                            id="quant3"
+                            type="text"
+                            class="form-control item3"
+                            disabled
+                    /></label>
+                </div>
+            </div>
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">Calculate</button>
+            </div>
+            <div class="mt-4">
+                <label id="res" class="text-center"></label>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $("input[type='checkbox']").change(function () {
+                    if ($(this).is(":checked")) {
+                        $("." + $(this).val()).prop("disabled", false);
+                    } else {
+                        $("." + $(this).val())
+                            .val("")
+                            .prop("disabled", true);
+                    }
+                });
+                $("button[type='submit']").on({
+                    click: function (event) {
+                        event.preventDefault();
+                        let prices = [100, 50, 25];
+                        let quantity = [];
+                        $("input[type='text']").each(function () {
+                            if ($(this).prop("disabled") === false) {
+                                quantity.push(parseFloat($(this).val()));
+                            } else {
+                                quantity.push(0);
+                            }
+                        });
+                        var total = 0;
+                        for (var i = 0; i < 3; i++) {
+                            total += prices[i] * quantity[i];
+                        }
+                        $("#res").text("Total: " + total);
+                    },
+                });
+            });
+        </script>
+    </body>
+</html>
