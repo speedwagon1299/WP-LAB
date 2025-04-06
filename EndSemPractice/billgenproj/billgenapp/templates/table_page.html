@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bill Generator</title>
+        <script src="{% static 'jquery.min.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" />
+    </head>
+    <body>
+        <div class="container bg-light">
+            <div class="mt-4">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group mt-4">
+                        {{ form.items.label_tag }} {{ form.items }}
+                    </div>
+                    <button class="btn btn-primary" type="submit">
+                        Submit
+                    </button>
+                </form>
+            </div>
+            {% if item_price %}
+            <br />
+            <br />
+            <div class="mt-4">
+                <table class="table table-bordered">
+                    <thead>
+                        <td>Item</td>
+                        <td colspan="2">Price</td>
+                    </thead>
+                    <tbody>
+                        {% for item, price in item_price %}
+                        <tr>
+                            <td>{{ item }}</td>
+                            <td colspan="2">{{ price }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+    </body>
+</html>
