@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Second page</title>
+        <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" />
+        <script src="{% static 'jquery.min.js' %}"></script>
+    </head>
+    <body>
+        <div class="container bg-light">
+            <div class="mt-4">
+                <div class="mt-4">Car: {{car}}</div>
+                <div class="mt-4">Gender: {{gender}}</div>
+                <div class="mt-4">Semester: {{semester}}</div>
+                <div class="mt-4">Courses: {{courses}}</div>
+                <div class="mt-4">
+                    Scholarship: {{scholarship}}
+                </div>
+            </div>
+            <div class="mt-4">
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="{% url 'index' %}">Back Home</li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>
