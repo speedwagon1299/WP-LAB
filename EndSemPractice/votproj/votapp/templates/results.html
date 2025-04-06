@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Results page</title>
+        <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" />
+        <script src="{% static 'jquery.min.js' %}"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Results:</h2>
+            <div class="mt-4">
+                {% if data %} {% for k,v in data %}
+                <div class="mt-4">{{ k }}: {{ v }}</div>
+                {% endfor %} {% endif %}
+            </div>
+            <div class="mt-4">
+                <a href="{% url 'vote_page' %}">Go Back</a>
+            </div>
+        </div>
+    </body>
+</html>
