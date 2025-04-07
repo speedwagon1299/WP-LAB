@@ -13,24 +13,7 @@
             <h2>Add Student:</h2>
             <form method="post">
                 {% csrf_token %}
-                <div class="form-group mt-4">
-                    {{ form.name.label_tag }} {{ form.name }}
-                </div>
-                <div class="form-group mt-4">
-                    {{ form.year.label_tag }} {{ form.year }}
-                </div>
-                <div class="form-group mt-4">
-                    {{ form.branch.label_tag }} {{ form.branch }}
-                </div>
-                <div class="form-group mt-4">
-                    {{ form.section.label_tag }} {{ form.section }}
-                </div>
-                <div class="form-group mt-4">
-                    {{ form.rollno.label_tag }} {{ form.rollno }}
-                </div>
-                <div class="form-group mt-4">
-                    {{ form.courses.label_tag }} {{ form.courses }}
-                </div>
+                <div class="mt-4">{{ form.as_p }}</div>
                 <button type="submit" class="btn btn-primary">Add</button>
             </form>
         </div>
