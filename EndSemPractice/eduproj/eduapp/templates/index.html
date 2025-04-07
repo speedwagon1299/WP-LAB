@@ -1,4 +1,4 @@
-{% load_static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,5 +8,171 @@
         <script src="{% static 'jquery.min.js' %}"></script>
         <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" />
     </head>
-    <body></body>
+    <body>
+        <div class="container mt-4 p-4">
+            <div id="branch" class="mt-4">
+                <table id="branch-table" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Code</td>
+                            <td>Credits</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if branches %}{% for branch in branches %}
+                        <tr>
+                            <td>{{ branch.name }}</td>
+                            <td>{{ branch.code }}</td>
+                            <td>{{ branch.credits }}</td>
+                            <td>
+                                <a
+                                    href="{% url 'update_branch' branch.id %}"
+                                    class="btn btn-success"
+                                    >Update</a
+                                >
+                                <a
+                                    href="{% url 'delete_branch' branch.id %}"
+                                    class="btn btn-danger"
+                                    >Delete</a
+                                >
+                            </td>
+                        </tr>
+                        {% endfor %} {% endif %}
+                    </tbody>
+                </table>
+                <a href="{% url 'add_branch' %}" class="btn btn-primary"
+                    >Add Branch</a
+                >
+            </div>
+
+            <div id="course" class="mt-4">
+                <table id="course-table" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Code</td>
+                            <td>Credits</td>
+                            <td>Branch</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if courses %}{% for course in courses %}
+                        <tr>
+                            <td>{{ course.name }}</td>
+                            <td>{{ course.code }}</td>
+                            <td>{{ course.credits }}</td>
+                            <td>{{ course.branch }}</td>
+                            <td>
+                                <a
+                                    href="{% url 'update_course' course.id %}"
+                                    class="btn btn-success"
+                                    >Update</a
+                                >
+                                <a
+                                    href="{% url 'delete_course' course.id %}"
+                                    class="btn btn-danger"
+                                    >Delete</a
+                                >
+                            </td>
+                        </tr>
+                        {% endfor %} {% endif %}
+                    </tbody>
+                </table>
+                <a href="{% url 'add_course' %}" class="btn btn-primary"
+                    >Add Course</a
+                >
+            </div>
+
+            <div id="teacher" class="mt-4">
+                <table id="teacher-table" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Branch</td>
+                            <td>Section</td>
+                            <td>Qualification</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if teachers %}{% for teacher in teachers %}
+                        <tr>
+                            <td>{{ teacher.name }}</td>
+                            <td>{{ teacher.branch }}</td>
+                            <td>{{ teacher.section }}</td>
+                            <td>{{ teacher.qualification }}</td>
+                            <td>
+                                <a
+                                    href="{% url 'update_teacher' teacher.id %}"
+                                    class="btn btn-success"
+                                    >Update</a
+                                >
+                                <a
+                                    href="{% url 'delete_teacher' teacher.id %}"
+                                    class="btn btn-danger"
+                                    >Delete</a
+                                >
+                            </td>
+                        </tr>
+                        {% endfor %} {% endif %}
+                    </tbody>
+                </table>
+                <a href="{% url 'add_teacher' %}" class="btn btn-primary"
+                    >Add Teachers</a
+                >
+            </div>
+
+            <div id="student" class="mt-4">
+                <table id="student-table" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Year</td>
+                            <td>Branch</td>
+                            <td>Section</td>
+                            <td>Roll Number</td>
+                            <td>Courses</td>
+                            <td>Credits</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if students %}{% for student in students %}
+                        <tr>
+                            <td>{{ student.name }}</td>
+                            <td>{{ student.year }}</td>
+                            <td>{{ student.branch }}</td>
+                            <td>{{ student.section }}</td>
+                            <td>{{ student.rollno }}</td>
+                            <td>
+                                {% for course in student.courses.all %}
+                                <span>{{ course.name }}, </span>
+                                {% endfor %}
+                            </td>
+                            <td>{{ student.credits }}</td>
+                            <td>
+                                <a
+                                    href="{% url 'update_student' student.id %}"
+                                    class="btn btn-success"
+                                    >Update</a
+                                >
+                                <a
+                                    href="{% url 'delete_student' student.id %}"
+                                    class="btn btn-danger"
+                                    >Delete</a
+                                >
+                            </td>
+                        </tr>
+                        {% endfor %} {% endif %}
+                    </tbody>
+                </table>
+                <a href="{% url 'add_student' %}" class="btn btn-primary"
+                    >Add Students</a
+                >
+            </div>
+        </div>
+    </body>
 </html>

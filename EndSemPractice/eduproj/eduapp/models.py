@@ -28,7 +28,7 @@ class Course(models.Model):
 class Teacher(models.Model):
     name = models.CharField(max_length=128)
     branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
-    section = models.CharField(max_length=1, choices=SECTION_CHOICES)
+    section = models.CharField(max_length=1, choices=SECTION_CHOICES, default='A')
     qualification = models.CharField(max_length=128)
 
     def __str__(self):
@@ -37,9 +37,9 @@ class Teacher(models.Model):
 
 class Student(models.Model):
     name = models.CharField(max_length=128)
-    year = models.CharField(max_length=5, choices=YEAR_CHOICES)
+    year = models.CharField(max_length=5, choices=YEAR_CHOICES, default='I')
     branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
-    section = models.CharField(max_length=1, choices=SECTION_CHOICES)
+    section = models.CharField(max_length=1, choices=SECTION_CHOICES, default='A')
     rollno = models.IntegerField(default=0)
     courses = models.ManyToManyField(Course)
 

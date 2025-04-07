@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Add Branch</title>
+        <script src="{% static 'jquery.min.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" />
+    </head>
+    <body>
+        <div class="container bg-light mt-4 p-4">
+            <h2>Update Branch:</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group mt-4">
+                    {{ form.name.label_tag }} {{ form.name }}
+                    <div class="mt-4">Current: {{ branch.name }}</div>
+                </div>
+                <div class="form-group mt-4">
+                    {{ form.code.label_tag }} {{ form.code }}
+                    <div class="mt-4">Current: {{ branch.code }}</div>
+                </div>
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+        </div>
+    </body>
+</html>
