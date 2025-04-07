@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" />
+        <script src="{% static 'jquery.min.js' %}"></script>
+        <title>Tech Fest Registration</title>
+    </head>
+    <body>
+        <div class="container bg-dark">
+            <div class="mt-4">
+                <div class="mt-4">
+                    <h1 class="text-center text-primary">THE TECH FEST 2025</h1>
+                </div>
+                <div class="mt-4">
+                    <p class="text-center text-light">
+                        This is the festival you must come 
+                        please come i really want you to come
+                        please come i really want you to come
+                        please come i really want you to come
+                        everyday i imagine a future where i can be with you
+                        in my hand is a pen that will write a poem of me and you
+                        the ink flows down into a dark puddle 
+                        just put you hand, write your way into his heart
+                        and in this world of infinite choices
+                        what will it take just to find that special day
+                        what will it take just to find, that special day
+                    </h1>
+                </div>
+            </div>
+            <div class="mt-4">
+                <form id="student-form" method="post" class="text-light">
+                    {% csrf_token %}
+                    {{ form.as_p }}      
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="mt-4">
+                <a href="{% url 'view_page' %}" class="btn btn-primary">View</a>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                $("#student-form").on({
+                    submit: function(e) {
+                        let isValid = true;
+                        const name = $('#id_name').val().trim()
+                        if(name === '') {
+                            isValid = false;
+                            alert('Enter name');
+                        }
+                        const rollno = $('#id_rollno').val()
+                        if(!rollno || rollno <= 0) {
+                            isValid = false;
+                            alert('Enter valid roll number');
+                        }
+                        const gender = $('input[name="gender"]:checked').val()
+                        if(!gender) {
+                            isValid = false;
+                            alert('Select your gender');
+                        }
+                        const email = $('#id_email').val().trim()
+                        if(email === '') {
+                            isValid = false;
+                            alert('Enter email');
+                        }
+                        else {
+                            const index = email.indexOf('@');
+                            if(index <= 0 || index === email.length - 1) {
+                                isValid = false;
+                                alert('Enter valid email');
+                            }
+                        }
+                        const dept = $('input[name="dept"]:checked').val()
+                        if(!dept) {
+                            isValid = false;
+                            alert('Select your Department');
+                        }
+                        if(!isValid) {
+                            e.preventDefault();
+                        }
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" />
+        <script src="{% static 'jquery.min.js' %}"></script>
+        <title>Tech Fest Registration</title>
+    </head>
+    <body>
+        <div class="container bg-light">
+            <div class="mt-4">
+                <h2>Enrolled Students</h2>
+            </div>
+            <div class="mt-4">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Roll Number</td>
+                            <td>Gender</td>
+                            <td>Email</td>
+                            <td>Department</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if students %}
+                            {% for student in students %}
+                                <tr>
+                                    <td>{{student.name}}</td>
+                                    <td>{{student.rollno}}</td>
+                                    <td>{{student.gender}}</td>
+                                    <td>{{student.email}}</td>
+                                    <td>{{student.dept}}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-4">
+                <a href="{% url 'input_page' %}" class="btn btn-primary">Register</a>
+            </div>
+    </body>
+</html>
